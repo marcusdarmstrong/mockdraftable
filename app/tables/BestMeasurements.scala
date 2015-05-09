@@ -3,7 +3,9 @@ package tables
 import scala.slick.driver.PostgresDriver.simple._
 import play.api.Play.current
 import play.api.data.Forms._
+
 import models.MeasurementSet
+import models.Positions
 
 class BestMeasurements(tag: Tag) extends Table[MeasurementSet](tag, "v_best_measurements") {
   def playerId = column[Int]("player_id")
@@ -28,13 +30,15 @@ class BestMeasurements(tag: Tag) extends Table[MeasurementSet](tag, "v_best_meas
 object BestMeasurements {
 	val db = play.api.db.slick.DB
 	val bestMeasurements = TableQuery[BestMeasurements]
-	def all: List[MeasurementSet] = db.withSession { implicit session =>
-		bestMeasurements.list
-	}
+  val positionEligibility = TableQuery[Eligibility]
+
   def forPosition(positionId: Int): List[MeasurementSet] = db.withSession { implicit session =>
-    bestMeasurements.list
-  }
+    val positionSet = Positions.getImpliedPositions(positionId).map(_.id)
+    (for (
+      (m, pe) <- bestMeasurements innerJoin positionEligibility.filter(_.positionId.inSetBind(positionSet)) on (_.playerId === _.playerId)
+    ) yield m).list
+  } 
 	def forPlayer(playerId: Int): MeasurementSet = db.withSession{ implicit session =>
-		bestMeasurements.first
+		bestMeasurements.filter(_.playerId === playerId).first
 	}
 }
