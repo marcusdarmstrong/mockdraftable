@@ -35,26 +35,6 @@ create table t_member (
   permissions int not null
 );
 
-create view v_best_measurements as 
-select 
-  id as id,
-  max(height) as height,
-  max(weight) as weight,
-  max(wingspan) as wingspan,
-  max(arm_length) as arm_length,
-  max(hand_size) as hand_size,
-  min(time10) as time10,
-  min(time20) as time20,
-  min(time40) as time40,
-  max(bench) as bench,
-  max(vertical) as vertical,
-  max(broad) as broad,
-  min(cone3) as cone3,
-  min(shuttle20) as shuttle20,
-  min(shuttle60) as shuttle60,
-  max(wonderlic) as wonderlic
-from v_individual_measurements
-group by id;
 
 create view v_individual_measurements as 
 select 
@@ -78,12 +58,33 @@ from t_players p
 join t_measurements m
    on m.player_id = p.id;
 
+create view v_best_measurements as 
+select 
+  id as id,
+  max(height) as height,
+  max(weight) as weight,
+  max(wingspan) as wingspan,
+  max(arm_length) as arm_length,
+  max(hand_size) as hand_size,
+  min(time10) as time10,
+  min(time20) as time20,
+  min(time40) as time40,
+  max(bench) as bench,
+  max(vertical) as vertical,
+  max(broad) as broad,
+  min(cone3) as cone3,
+  min(shuttle20) as shuttle20,
+  min(shuttle60) as shuttle60,
+  max(wonderlic) as wonderlic
+from v_individual_measurements
+group by id;
+
+
 # --- !Downs
 
+drop view v_best_measurements;
+drop view v_individual_measurements;
 drop table t_member;
 drop table t_measurement;
 drop table t_player;
 drop table t_position_eligibility;
-drop view v_best_measurements;
-drop view v_individual_measurements;
-
