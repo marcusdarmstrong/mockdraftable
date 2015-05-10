@@ -22,7 +22,7 @@ create table t_measurement (
   status int not null,
   player_id int not null,
   measurable_id int not null,
-  measurement double not null,
+  measurement double precision not null,
   source int not null
 );
 
