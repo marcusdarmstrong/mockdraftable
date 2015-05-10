@@ -6,7 +6,7 @@ import play.api.Play.current
 import models.Member
 
 class Members(tag: Tag) extends Table[Member](tag, "t_member") {
-  def id = column[Int]("id")
+  def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def email = column[String]("email")
   def passHash = column[String]("pass_hash")
   def status = column[Int]("status")

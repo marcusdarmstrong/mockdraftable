@@ -11,7 +11,8 @@ import tables.TimeConverters.dateMapper
 import java.time.LocalDate
 
 class Players(tag: Tag) extends Table[Player](tag, "t_player") {
-  def id = column[Int]("id")
+  def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
+  def oldid = column[Int]("oldid")
   def status = column[ContributionStatus]("status")
   def firstName = column[String]("first_name")
   def lastName = column[String]("last_name")
@@ -19,7 +20,7 @@ class Players(tag: Tag) extends Table[Player](tag, "t_player") {
   def draftYear = column[Int]("draft_year")
   def canonicalName = column[String]("canonical_name")
 
-  def * = (id, status, firstName, lastName, birthdate, draftYear, canonicalName) <> (Player.tupled, Player.unapply)
+  def * = (id, oldid, status, firstName, lastName, birthdate, draftYear, canonicalName) <> (Player.tupled, Player.unapply)
 }
 
 object Players {

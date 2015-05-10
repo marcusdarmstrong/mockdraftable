@@ -17,14 +17,14 @@ class Eligibility(tag: Tag) extends Table[PositionEligibility](tag, "t_position_
 }
 
 object Eligibility {
-	val db = play.api.db.slick.DB
+  val db = play.api.db.slick.DB
   val positionEligibility = TableQuery[Eligibility]
 
-	def forPlayerId(playerId: Int) = db.withSession { implicit session =>
-		positionEligibility
-			.filter(_.playerId === playerId)
-			.list
-			.flatMap(pe => Positions.getImpliedPositions(pe.positionId))
-			.toSet
-	}
+  def forPlayerId(playerId: Int) = db.withSession { implicit session =>
+    positionEligibility
+      .filter(_.playerId === playerId)
+      .list
+      .flatMap(pe => Positions.getImpliedPositions(pe.positionId))
+      .toSet
+  }
 }
