@@ -53,7 +53,7 @@ select
   min(shuttle20) as shuttle20,
   min(shuttle60) as shuttle60,
   max(wonderlic) as wonderlic
-from individual_measurements
+from v_individual_measurements
 group by id;
 
 create view v_individual_measurements as 
@@ -74,8 +74,8 @@ select
   case when (m.measurable_id = 13) then m.measurement else NULL end as shuttle20,
   case when (m.measurable_id = 14) then m.measurement else NULL end as shuttle60,
   case when (m.measurable_id = 15) then m.measurement else NULL end as wonderlic 
-from players p 
-join measurements m
+from t_players p 
+join t_measurements m
    on m.player_id = p.id;
 
 # --- !Downs
