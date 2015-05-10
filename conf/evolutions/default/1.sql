@@ -12,18 +12,18 @@ create table t_player (
 );
 
 create table t_position_eligibility (
-  player_id int not null
-  position_id int not null
+  player_id int not null,
+  position_id int not null,
   status int not null
 );
 
 create table t_measurement (
   id serial,
-  status int,
-  player_id int,
-  measurable_id int,
-  measurement double,
-  source int
+  status int not null,
+  player_id int not null,
+  measurable_id int not null,
+  measurement double not null,
+  source int not null
 );
 
 create table t_member (
@@ -77,7 +77,6 @@ select
 from players p 
 join measurements m
    on m.player_id = p.id;
-
 
 # --- !Downs
 
