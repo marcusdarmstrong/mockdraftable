@@ -54,8 +54,8 @@ select
   case when (m.measurable_id = 13) then m.measurement else NULL end as shuttle20,
   case when (m.measurable_id = 14) then m.measurement else NULL end as shuttle60,
   case when (m.measurable_id = 15) then m.measurement else NULL end as wonderlic 
-from t_players p 
-join t_measurements m
+from t_player p 
+join t_measurement m
    on m.player_id = p.id;
 
 create view v_best_measurements as 
