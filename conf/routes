@@ -2,10 +2,18 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.Application.index
-GET     /hello						controllers.Application.hello
-
+# Legacy
+GET 	/players/:year					controllers.Application.oldListing(year: Int)
+GET     /player/:id						controllers.Application.oldPlayer(id: Int)
+GET 	/player_embed/:id				controllers.Application.oldPlayerEmbed(id: Int)
+GET 	/player_embed/:id/show/graph	controllers.Application.oldPlayerEmbedGraph(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# New app
+GET 	/embed/:playerid	controllers.Application.embed(playerid: String, show: String ?= "graph")
+GET 	/ 					controllers.Application.search(year: Int = 2015, pos: String = "ATH", name: Option[String], sortd: Option[String], sorta: Option[String], page: Int ?= 1)
+GET		/:year				controllers.Application.search(year: Int, pos: String = "ATH", name: Option[String], sortd: Option[String], sorta: Option[String], page: Int ?= 1)
+GET		/:year/:pos			controllers.Application.search(year: Int, pos: String, name: Option[String], sortd: Option[String], sorta: Option[String], page: Int ?= 1)
+GET		/:playerid			controllers.Application.player(playerid: String, pos: Option[String])

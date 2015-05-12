@@ -66,7 +66,7 @@ object Positions {
     val K = Position(801, "K", "Kicker", Primary)
       val KOS = Position(8011, "KOS", "Kickoff Specialist", Role)
     val P = Position(802, "P", "Punter", Primary)
-    val LS = Position(803, "LS", "Long Snapper", Role)
+    val LS = Position(803, "LS", "Long Snapper", Primary)
     val GUN = Position(804, "GUN", "Gunner", Role)
     val PP = Position(805, "PP", "Punt Protector", Role)
     val VICE = Position(806, "VICE", "Vice", Role)
@@ -117,10 +117,55 @@ object Positions {
 	)
 
 	val ids = tree.get(ATH).getOrElse(Set()).map(p => p.id -> p).toMap
+  val abbrs = tree.get(ATH).getOrElse(Set()).map(p => p.abbr -> p).toMap
 
 	def getImpliedPositions(positionId: Int) = {
     val pos = getPosition(positionId)
     tree.get(pos) getOrElse Set(pos)
   }
 	def getPosition(positionId: Int) = ids.get(positionId) getOrElse ATH
+  def getPositionForAbbr(positionAbbr: String) = abbrs.get(positionAbbr) getOrElse ATH
+  def getDisplayPosition(positions: Set[Position]) = {
+    // LCA, no roles
+    // Ignore all 8* positions, unless they are the only ones availble
+    var idx = 0;
+    var partial = "";
+
+    var success = true;
+    do {
+      var current = 'a';
+      positions.foreach { p =>
+        val id = p.id.toString
+        if (!id.startsWith("8")) {
+          if (current == 'a') {
+            current = id.charAt(idx)
+          } else {
+            success &= id.charAt(idx) == current
+          }
+        }
+      }
+      if (success) {
+        partial += current
+      }
+    } while (success);
+
+    if (partial == "") {
+      if (positions.subsetOf(Set(`34B`, SLB34, WLB34, DE, RDE, LDE))) {
+        EDGE
+      } else if (positions.subsetOf(Set(K, KOS))) {
+        K
+      } else if (positions == Set(P)) {
+        P
+      } else if (positions == Set(LS)) {
+        LS
+      } else if (positions.subsetOf(Set(K, KOS, P, LS, GUN, PP, VICE, H, U, PR, KR))) {
+        ST
+      } else {
+        ATH
+      }
+    } else {
+      getPosition(partial.toInt)
+    }
+  }
+
 }

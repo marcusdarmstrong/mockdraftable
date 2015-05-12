@@ -8,7 +8,7 @@ import models.MeasurementSet
 import models.Positions
 
 class BestMeasurements(tag: Tag) extends Table[MeasurementSet](tag, "v_best_measurements") {
-  def playerId = column[Int]("player_id")
+  def playerId = column[Int]("id")
   def height = column[Option[Double]]("height")
   def weight = column[Option[Double]]("weight")
   def wingspan = column[Option[Double]]("wingspan")
@@ -37,6 +37,15 @@ object BestMeasurements {
     (for (
       (m, pe) <- bestMeasurements innerJoin positionEligibility.filter(_.positionId.inSetBind(positionSet)) on (_.playerId === _.playerId)
     ) yield m).list
+
+
+    val positionIdSet = Positions.getImpliedPositions(positionId).map(_.id)
+    val playersAtPosition = positionEligibility
+      .filter(_.positionId inSet positionIdSet)
+      .groupBy(_.playerId)
+      .map { case (playerId, group) => playerId }
+
+    bestMeasurements.filter(_.playerId in playersAtPosition).list
   } 
 	def forPlayer(playerId: Int): MeasurementSet = db.withSession{ implicit session =>
 		bestMeasurements.filter(_.playerId === playerId).first
