@@ -1,6 +1,6 @@
 @(player: DisplayPlayer, primaryPosition: Position, comparables: List[Player])
 
-@main("MockDraftable") {
+@main(player.player.firstName + " " + player.player.lastName + " - MockDraftable") {
 
           <div class="page-header">
             <div class="btn-group btn-group-lg pull-right">
@@ -15,7 +15,7 @@
                 <li><a href="#">WR</a></li>
               </ul>
             </div>
-            <h1>@player.player.firstName @player.player.lastName <small>Virginia (@player.player.draftYear)</small></h1>
+            <h1>@player.player.firstName @player.player.lastName <small> (@player.player.draftYear)</small></h1>
           </div>
           <div id="measurables" class="pane">
             <h3>Measurables</h3>
@@ -91,46 +91,13 @@
                     <th>Measurement</th>
                     <th>%ile</th>
                   </tr>
-                  <tr>
-                    <td>Height</td>
-                    <td>6'6"</td>
-                    <td>47</td>
-                  </tr>
-                  <tr>
-                    <td>Weight</td>
-                    <td>312</td>
-                    <td>42</td>
-                  </tr>
-                  <tr>
-                    <td>Arm Length</td>
-                    <td>35 1/2"</td>
-                    <td>87</td>
-                  </tr>
-                  <tr>
-                    <td>40 Yard Dash</td>
-                    <td>5.08 sec</td>
-                    <td>84</td>
-                  </tr>
-                  <tr>
-                    <td>Vertical Jump</td>
-                    <td>30"</td>
-                    <td>73</td>
-                  </tr>
-                  <tr>
-                    <td>Broad Jump</td>
-                    <td>107"</td>
-                    <td>77</td>
-                  </tr>
-                  <tr>
-                    <td>3 Cone Drill</td>
-                    <td>7.62 sec</td>
-                    <td>59</td>
-                  </tr>
-                  <tr>
-                    <td>20 Yard Shuttle</td>
-                    <td>4.85 sec</td>
-                    <td>29</td>
-                  </tr>
+                  @for(m <- player.measurements) {
+                    <tr>
+                      <td>m.measurable.name</td>
+                      <td>m.measurement</td>
+                      <td>47</td>
+                    </tr>
+                  }
                 </table>
               </div>
             </div>

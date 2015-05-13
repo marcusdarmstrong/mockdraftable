@@ -20,7 +20,8 @@ object Application extends Controller {
   	val primaryPosition = Positions.getDisplayPosition(positions)
   	val population = BestMeasurements.forPosition(Positions.getPositionForAbbr(pos getOrElse primaryPosition.abbr).id)
   	val percentiles = Percentiles(measurements, population)
-  	val displayPlayer = DisplayPlayer(player, positions, measurements, percentiles)
+    val fullMeasurements = Measurements.forPlayerId(player.id)
+  	val displayPlayer = DisplayPlayer(player, positions, fullMeasurements, percentiles)
   	val comparables = List();
     Ok(views.html.player(displayPlayer, primaryPosition, comparables))
   }

@@ -1,14 +1,5 @@
 package models
 
-sealed trait MeasurableUnit
-case object Inches extends MeasurableUnit
-case object Seconds extends MeasurableUnit
-case object Reps extends MeasurableUnit
-case object Pounds extends MeasurableUnit
-case object Score extends MeasurableUnit
-
-case class Measurable(val id: Int, val name: String, val unit: MeasurableUnit)
-
 object Measurables {
 	val height = Measurable(1, "Height", Inches)
 	val weight = Measurable(2, "Weight", Pounds)
