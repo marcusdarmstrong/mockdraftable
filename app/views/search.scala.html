@@ -2,5 +2,96 @@
 
 @main("MockDraftable") {
 
-    <img src="@routes.Assets.at("images/logo.png")" alt="MockDraftable">
+        <br>
+          <div class="clearfix">
+            <form>
+              <div class="row">
+                <div class="form-group col-xs-12 col-sm-6">
+                  <label for="playerName">Player Name</label>
+                  <input type="search" class="form-control input-lg" id="playerName" placeholder="Type for suggestions">
+                </div>
+                <div class="form-group col-xs-6 col-sm-3">
+                  <label for="stat">Position</label>
+                  <div class="btn-group btn-block btn-group-lg">
+                    <button type="button" class="btn btn-danger btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                      <strong>OT</strong>&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">LT</a></li>
+                      <li><a href="#">OL</a></li>
+                      <li><a href="#">ATH</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">WR</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6 col-sm-3">
+                  <label for="stat">Draft Year</label>
+                  <div class="btn-group btn-block btn-group-lg">
+                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">
+                      2014&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">2013</a></li>
+                      <li><a href="#">2012</a></li>
+                      <li><a href="#">2011</a></li>
+                      <li><a href="#">2010</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <br>
+          <div class="clearfix">
+            <div class="btn-group btn-group-sm" data-toggle="buttons">
+              <label class="btn btn-default active">
+                <input type="radio" name="sort" id="alpha-desc" checked>
+                <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="sort" id="alpha-asc">
+                <span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="sort" id="attr-desc">
+                <span class="glyphicon glyphicon-sort-by-attributes"></span>
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="sort" id="attr-asc">
+                <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+              </label>
+            </div>
+            <div class="btn-group btn-group-sm pull-right">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                40 Yard Dash <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Height</a></li>
+                <li><a href="#">Weight</a></li>
+                <li><a href="#">10 Yard Dash</a></li>
+                <li><a href="#">Bench Press</a></li>
+              </ul>
+            </div>
+          </div>
+          <br>
+          <div class="list-group comparisons">
+            <a href="#" class="list-group-item">
+              <h4 class="pull-right">5.08 sec</h4>
+              <h4 class="list-group-item-heading">D'Brickashaw Ferguson</h4>
+              <p class="list-group-item-text"><span class="label label-danger">OT</span> Virginia</p>
+            </a>
+            <a href="#" class="list-group-item">
+              <h4 class="pull-right">5.06 sec</h4>
+              <h4 class="list-group-item-heading">Jammal Brown</h4>
+              <p class="list-group-item-text"><span class="label label-danger">OT</span> Oklahoma</p>
+            </a>
+            <a href="#" class="list-group-item">
+              <h4 class="pull-right">5.21 sec</h4>
+              <h4 class="list-group-item-heading">Gabe Carimi</h4>
+              <p class="list-group-item-text"><span class="label label-danger">OT</span> Wisconsin</p>
+            </a>
+          </div>
+        </div>
+      </div>
 }
