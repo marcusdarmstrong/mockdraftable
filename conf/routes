@@ -16,4 +16,4 @@ GET 	/embed/:playerid	controllers.Application.embed(playerid: String, show: Stri
 GET 	/ 					controllers.Application.search(year: Int = 2015, pos: String = "ATH", name: Option[String], sortd: Option[String], sorta: Option[String], page: Int ?= 1)
 GET		/:year<[0-9]+>				controllers.Application.search(year: Int, pos: String = "ATH", name: Option[String], sortd: Option[String], sorta: Option[String], page: Int ?= 1)
 GET		/:year<[0-9]+>/:pos			controllers.Application.search(year: Int, pos: String, name: Option[String], sortd: Option[String], sorta: Option[String], page: Int ?= 1)
-GET		/:playerid			controllers.Application.player(playerid: String, pos: Option[String])
+GET		/:playerid<[-a-z0-9]+>		controllers.Application.player(playerid: String, pos: Option[String])
