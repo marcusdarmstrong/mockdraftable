@@ -1,5 +1,7 @@
 package models
 
+import play.api.Logger
+
 object Positions {
 	// This shouldn't change often/ever, so it's all spelled out here in static code for efficiency
 	val ATH = Position(1, "ATH", "Athlete", Group)
@@ -222,7 +224,7 @@ object Positions {
       var current = 'a';
       positions.foreach { p =>
         val id = p.id.toString
-        if (id.length >= idx) {
+        if (id.length <= idx) {
           success = false
         } else {
           if (!id.startsWith("8")) {
