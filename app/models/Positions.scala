@@ -75,7 +75,7 @@ object Positions {
     val PR = Position(809, "PR", "Punt Returner", Role)
     val KR = Position(810, "KR", "Kick Returner", Role)
 
-	val tree = Map(
+	val children = Map(
 		ATH -> Set(ATH, SKILL, QB, BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, 
       WR, SR, X, Z, OL, OT, LT, RT, IOL, OG, LG, RG, OC, DL, IDL, DT, `3T`, NT, 
       `0T`, `1T`, `5T`, DE, RDE, LDE, EDGE, LB, OBLB, ILB, COVER, HIT, MIKE, OLB, 
@@ -115,6 +115,92 @@ object Positions {
     ST -> Set(ST, K, KOS, P, LS, GUN, PP, VICE, H, U, PR, KR),
     K -> Set(K, KOS)
 	)
+
+  val tree = Map(
+    ATH -> Set(ATH),
+
+    SKILL -> Set(SKILL, ATH),
+    QB -> Set(QB, SKILL, ATH),
+    BALL -> Set(BALL, SKILL, ATH),
+
+    RB -> Set(RB, BALL, SKILL, ATH),
+    `3DB` -> Set(`3DB`, RB, BALL, SKILL, ATH),
+    HB -> Set(HB, RB, BALL, SKILL, ATH),
+    FB -> Set(FB, RB, BALL, SKILL, ATH),
+
+    TE -> Set(TE, BALL, SKILL, ATH),
+    JKR -> Set(JKR, TE, BALL, SKILL, ATH),
+    HTE -> Set(HTE, TE, BALL, SKILL, ATH),
+    FTE -> Set(FTE, TE, BALL, SKILL, ATH),
+    YTE -> Set(YTE, TE, BALL, SKILL, ATH),
+
+    WR -> Set(WR, BALL, SKILL, ATH),
+    SR -> Set(SR, WR, BALL, SKILL, ATH),
+    X -> Set(X, WR, BALL, SKILL, ATH),
+    Z -> Set(Z, WR, BALL, SKILL, ATH),
+
+    OL -> Set(OL, ATH),
+    OT -> Set(OT, OL, ATH),
+    LT -> Set(LT, OT, OL, ATH),
+    RT -> Set(RT, OT, OL, ATH),
+    IOL -> Set(IOL, OL, ATH),
+    OG -> Set(OG, IOL, OL, ATH),
+    LG -> Set(LG, OG, IOL, OL, ATH),
+    RG -> Set(RG, OG, IOL, OL, ATH),
+    OC -> Set(OC, IOL, OL, ATH),
+
+    DL -> Set(DL, ATH),
+    IDL -> Set(IDL, DL, ATH),
+    `5T` -> Set(`5T`, IDL, DL, ATH),
+    DT -> Set(DT, IDL, DL, ATH),
+    `3T` -> Set(`3T`, DT, IDL, DL, ATH),
+    NT -> Set(NT, DT, IDL, DL, ATH),
+    `0T` -> Set(`0T`, NT, DT, IDL, DL, ATH),
+    `1T` -> Set(`1T`, NT, DT, IDL, DL, ATH),
+
+    DE -> Set(DE, DL, ATH, EDGE),
+    RDE -> Set(RDE, DE, DL, ATH, EDGE),
+    LDE -> Set(LDE, DE, DL, ATH, EDGE),
+
+    EDGE -> Set(EDGE, ATH),
+
+    LB -> Set(LB, ATH),
+    OBLB -> Set(OBLB, LB, ATH),
+    HSL -> Set(HSL, OBLB, LB, ATH),
+    ILB -> Set(ILB, OBLB, LB, ATH),
+    COVER -> Set(COVER, ILB, OBLB, LB, ATH),
+    HIT -> Set(HIT, ILB, OBLB, LB, ATH),
+    MIKE -> Set(MIKE, ILB, OBLB, LB, ATH),
+    OLB -> Set(OLB, OBLB, LB, ATH),
+    SLB -> Set(SLB, OLB, OBLB, LB, ATH),
+    WLB -> Set(WLB, OLB, OBLB, LB, ATH),
+
+    `34B` -> Set(`34B`, LB, EDGE, ATH),
+    SLB34 -> Set(SLB34, `34B`, LB, EDGE, ATH),
+    WLB34 -> Set(WLB34, `34B`, LB, EDGE, ATH),
+
+    DB -> Set(DB, ATH),
+    S -> Set(S, DB, ATH),
+    FS -> Set(FS, S, DB, ATH),
+    SS -> Set(SS, S, DB, ATH),
+    CB -> Set(CB, DB, ATH),
+    C2CB -> Set(C2CB, CB, DB, ATH),
+    PCB -> Set(PCB, CB, DB, ATH),
+    SCB -> Set(SCB, CB, CB, ATH),
+
+    ST -> Set(ST, ATH),
+    K -> Set(K, ST, ATH),
+    KOS -> Set(KOS, K, ST, ATH),
+    P -> Set(P, ST, ATH),
+    LS -> Set(LS, ST, ATH),
+    GUN -> Set(GUN, ST, ATH), 
+    PP -> Set(PP, ST, ATH),
+    VICE -> Set(VICE, ST, ATH),
+    H -> Set(H, ST, ATH),
+    U -> Set(U, ST, ATH),
+    PR -> Set(PR, ST, ATH),
+    KR -> Set(KR, ST, ATH)
+  )
 
 	val ids = tree.get(ATH).getOrElse(Set()).map(p => p.id -> p).toMap
   val abbrs = tree.get(ATH).getOrElse(Set()).map(p => p.abbr -> p).toMap
