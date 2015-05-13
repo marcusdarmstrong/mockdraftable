@@ -147,7 +147,8 @@ object Positions {
       if (success) {
         partial += current
       }
-    } while (success);
+      idx += 1
+    } while (success)
 
     if (partial == "") {
       if (positions.subsetOf(Set(`34B`, SLB34, WLB34, DE, RDE, LDE))) {
