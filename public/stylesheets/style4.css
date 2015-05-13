@@ -3,6 +3,16 @@
   src: url("../fonts/Maven Pro Regular.otf");
 }
 
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Arvo";
+  src: url("../fonts/Arvo-Regular.ttf");
+}
+
 .logoBox {
   display: block;
   text-align: center;
