@@ -202,8 +202,8 @@ object Positions {
     KR -> Set(KR, ST, ATH)
   )
 
-	val ids = tree.get(ATH).getOrElse(Set()).map(p => p.id -> p).toMap
-  val abbrs = tree.get(ATH).getOrElse(Set()).map(p => p.abbr -> p).toMap
+	val ids = children.get(ATH).getOrElse(Set()).map(p => p.id -> p).toMap
+  val abbrs = children.get(ATH).getOrElse(Set()).map(p => p.abbr -> p).toMap
 
 	def getImpliedPositions(positionId: Int) = {
     val pos = getPosition(positionId)
@@ -255,7 +255,11 @@ object Positions {
         ATH
       }
     } else {
-      getPosition(partial.toInt)
+      var pos = getPosition(partial.toInt);
+      while (pos.positionType == Role) {
+        pos = getPosition(pos.id / 10)
+      }
+      pos
     }
   }
 
