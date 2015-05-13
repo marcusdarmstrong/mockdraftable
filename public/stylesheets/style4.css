@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Maven Pro";
+  src: url("fonts/Maven Pro Regular.otf");
+}
+
 .logoBox {
   display: block;
   text-align: center;
