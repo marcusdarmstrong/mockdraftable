@@ -136,11 +136,15 @@ object Positions {
       var current = 'a';
       positions.foreach { p =>
         val id = p.id.toString
-        if (!id.startsWith("8")) {
-          if (current == 'a') {
-            current = id.charAt(idx)
-          } else {
-            success &= id.charAt(idx) == current
+        if (id.length >= idx) {
+          success = false
+        } else {
+          if (!id.startsWith("8")) {
+            if (current == 'a') {
+              current = id.charAt(idx)
+            } else {
+              success &= id.charAt(idx) == current
+            }
           }
         }
       }
