@@ -9,7 +9,7 @@ import models.ContributionStatus
 import models.ContributionStatusMapper.contributionStatusColumnType
 import TimeConverters.measurableMapper
 
-class Measurements(tag: Tag) extends Table[Measurement](tag, "t_Measurement") {
+class Measurements(tag: Tag) extends Table[Measurement](tag, "t_measurement") {
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def status = column[ContributionStatus]("status")
   def playerId = column[Int]("player_id")
