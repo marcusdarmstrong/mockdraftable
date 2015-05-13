@@ -15,12 +15,13 @@ object Application extends Controller {
 
   def player(id: String, pos: Option[String]) = Action {
   	val player = Players.forCanonicalName(id)
-  	val positions = Eligibility.forPlayerId(player.id)
+  	val eligiblePositions = Eligibility.forPlayerId(player.id)
   	val measurements = BestMeasurements.forPlayer(player.id)
-  	val primaryPosition = Positions.getDisplayPosition(positions)
+  	val primaryPosition = Positions.getDisplayPosition(eligiblePositions)
   	val population = BestMeasurements.forPosition(Positions.getPositionForAbbr(pos getOrElse primaryPosition.abbr).id)
   	val percentiles = Percentiles(measurements, population)
     val fullMeasurements = Measurements.forPlayerId(player.id)
+    val positions = eligiblePositions.foldLeft(Set[Position]())((s, p) => s ++ Positions.getImpliedPositions(p.id))
   	val displayPlayer = DisplayPlayer(player, positions, fullMeasurements, percentiles)
   	val comparables = List();
     Ok(views.html.player(displayPlayer, primaryPosition, comparables))
