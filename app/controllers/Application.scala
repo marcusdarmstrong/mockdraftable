@@ -22,7 +22,7 @@ object Application extends Controller {
   	val percentiles = Percentiles(measurements, population)
   	val displayPlayer = DisplayPlayer(player, positions, measurements, percentiles)
   	val comparables = List();
-    Ok(views.html.player(displayPlayer, comparables))
+    Ok(views.html.player(displayPlayer, primaryPosition, comparables))
   }
 
   def embed(id: String, show: String) = Action {

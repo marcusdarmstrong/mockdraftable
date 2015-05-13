@@ -1,15 +1,15 @@
-@(player: DisplayPlayer, comparables: List[Player])
+@(player: DisplayPlayer, primaryPosition: Position, comparables: List[Player])
 
 @main("MockDraftable") {
 
           <div class="page-header">
             <div class="btn-group btn-group-lg pull-right">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <strong>OT</strong>&nbsp;<span class="caret"></span>
+                <strong>@primaryPosition.abbr</strong>&nbsp;<span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
                 @for(pos <- player.positions) {
-                  <li><a href="#">pos.abbr</a></li>
+                  <li><a href="#">@pos.abbr</a></li>
                 }
                 <li class="divider"></li>
                 <li><a href="#">WR</a></li>
