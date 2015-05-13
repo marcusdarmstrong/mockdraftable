@@ -8,14 +8,14 @@
                 <strong>OT</strong>&nbsp;<span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">LT</a></li>
-                <li><a href="#">OL</a></li>
-                <li><a href="#">ATH</a></li>
+                @for(pos <- player.positions) {
+                  <li><a href="#">pos.abbr</a></li>
+                }
                 <li class="divider"></li>
                 <li><a href="#">WR</a></li>
               </ul>
             </div>
-            <h1>D'Brickashaw Ferguson <small>Virginia (2006)</small></h1>
+            <h1>@player.player.firstName @player.player.lastName <small>Virginia (@player.player.draftYear)</small></h1>
           </div>
           <div id="measurables" class="pane">
             <h3>Measurables</h3>
