@@ -17,8 +17,8 @@ object Application extends Controller {
   	val player = Players.forCanonicalName(id)
   	val positions = Eligibility.forPlayerId(player.id)
   	val measurements = BestMeasurements.forPlayer(player.id)
-  	val primaryPosition = Positions.getDisplayPosition(positions)
-  	val population = BestMeasurements.forPosition(Positions.getPositionForAbbr(pos getOrElse primaryPosition.abbr).id)
+  	//val primaryPosition = Positions.getDisplayPosition(positions)
+  	val population = BestMeasurements.forPosition(322 /*Positions.getPositionForAbbr(pos getOrElse primaryPosition.abbr).id*/)
   	val percentiles = Percentiles(measurements, population)
   	val displayPlayer = DisplayPlayer(player, positions, measurements, percentiles)
   	val comparables = List();
