@@ -223,16 +223,18 @@ object Positions {
     do {
       var current = 'a';
       positions.foreach { p =>
-        val id = p.id.toString
-        if (id.length <= idx) {
-          success = false
-        } else {
-          if (!id.startsWith("8")) {
-            if (current == 'a') {
-              current = id.charAt(idx)
-              Logger.debug("Setting current to " + current)
-            } else {
-              success &= id.charAt(idx) == current
+        if (p.positionType != Group) {
+          val id = p.id.toString
+          if (id.length <= idx) {
+            success = false
+          } else {
+            if (!id.startsWith("8")) {
+              if (current == 'a') {
+                current = id.charAt(idx)
+                Logger.debug("Setting current to " + current)
+              } else {
+                success &= id.charAt(idx) == current
+              }
             }
           }
         }
