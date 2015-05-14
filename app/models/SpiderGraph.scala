@@ -56,8 +56,9 @@ case class SpiderGraph(percentiles: Percentiles)
     (mapping zip points).map( z => {
       z match {
         case (MeasWithPerc(_, perc), p) => {
-          val x = math.round((perc * scale * p.x + scale + offset) * 100) / 100.0
-          val y = math.round((perc * scale * p.y + scale + offset) * 100) / 100.0
+          val dperc = perc / 100.0
+          val x = math.round((dperc * scale * p.x + scale + offset) * 100) / 100.0
+          val y = math.round((dperc * scale * p.y + scale + offset) * 100) / 100.0
           x + "," + y
         }
       }
