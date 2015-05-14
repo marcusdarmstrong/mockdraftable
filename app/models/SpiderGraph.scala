@@ -27,8 +27,8 @@ case class SpiderGraph(percentiles: Percentiles)
   val axes = (mapping zip points).map { a =>
     a match {
       case (MeasWithPerc(meas, perc), point) => 
-        Axis(meas, "M" + (math.round(100*(point.x + scale + offset))/100.0) + " "
-          + (math.round(100*(point.y + scale + offset))/100.0) + "L " 
+        Axis(meas, "M" + (math.round(100*(point.x * scale + scale + offset))/100.0) + " "
+          + (math.round(100*(point.y * scale + scale + offset))/100.0) + "L " 
           + (scale+offset) + " " + (scale+offset) + " Z") 
     }
   }
