@@ -23,7 +23,18 @@ object Application extends Controller {
     val fullMeasurements = Measurements.forPlayerId(player.id)
     val positions = eligiblePositions.foldLeft(Set[Position]())((s, p) => s ++ Positions.getImpliedPositions(p.id))
   	val displayPlayer = DisplayPlayer(player, positions, fullMeasurements, percentiles)
-  	val comparables = List();
+
+  	val comparables = Comparisons.getComparisons(measurements, population)
+      .map { p => 
+        val compPlayer = Players.forId(p._1)
+        val percentiles = Percentiles(population.find(_.playerId == p._1).get, population)
+        ComparablePlayer(
+          compPlayer, 
+          Positions.getDisplayPosition(Eligibility.forPlayerId(compPlayer.id)), 
+          percentiles, 
+          p._2
+        )
+      }
     Ok(views.html.player(displayPlayer, primaryPosition, comparables))
   }
 

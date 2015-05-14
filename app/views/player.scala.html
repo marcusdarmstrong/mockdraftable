@@ -1,4 +1,4 @@
-@(player: DisplayPlayer, primaryPosition: Position, comparables: List[Player])
+@(player: DisplayPlayer, primaryPosition: Position, comparables: List[ComparablePlayer])
 
 @main(player.player.firstName + " " + player.player.lastName + " - MockDraftable") {
 
@@ -58,6 +58,15 @@
           <div id="comparisons" class="pane">
             <h3>Comparisons</h3>
             <div class="list-group comparisons">
+              @for(c <- comparables) {
+                <a href="/@c.player.canonicalName" class="list-group-item">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info" role="progressbar" style="width: @c.score%;">@c.score%</div>
+                </div>
+                <h4 class="list-group-item-heading">@c.player.firstName @c.player.lastName</h4>
+                <p class="list-group-item-text"><span class="label label-danger">@c.primaryPosition.abbr</span> Oklahoma</p>
+              </a>
+              }
               <a href="#" class="list-group-item">
                 <div class="progress">
                   <div class="progress-bar progress-bar-info" role="progressbar" style="width: 84.3%;">84.3%</div>
