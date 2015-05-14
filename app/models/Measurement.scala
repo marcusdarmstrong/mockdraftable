@@ -8,15 +8,15 @@ case class Measurement(
   val measurement: Double,
   val source: Int
 ) {
-  def display = {
+  def display: String = {
     if ((measurable == Measurables.height || measurable == Measurables.wingspan) && measurement > 12 ) {
       math.floor(measurement / 12) + "' " + (measurement % 12) + getFractionEntity(measurement) + "\""
     } else if (measurable.unit == Inches) {
       math.floor(measurement) + getFractionEntity(measurement) + "\""
     } else if (measurable.unit == Seconds) {
-      BigDecimal(measurement).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
+      BigDecimal(measurement).setScale(2, BigDecimal.RoundingMode.HALF_UP).toString
     } else {
-      measurement
+      measurement.toString
     }
   }
 
