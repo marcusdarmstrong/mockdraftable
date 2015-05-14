@@ -2,10 +2,10 @@ package models
 
 case class Percentiles(val sample: MeasurementSet, val pop: List[MeasurementSet])
 {
-  var cache = Map[Measurable,Option[Int]]()
+  var cache = Map[Measurable,Int]()
 
   def getPercentile(m: Measurable): Option[Int] = {
-    val cached = cache(m)
+    val cached = cache.get(m)
     if (cached.isDefined) {
       cached
     } else {
@@ -26,7 +26,9 @@ case class Percentiles(val sample: MeasurementSet, val pop: List[MeasurementSet]
         case Measurables.shuttle60 => getPercentile(sample.shuttle60, pop.map{_.shuttle60}.flatten, m.unit)
         case _ => getPercentile(sample.wonderlic, pop.map{_.wonderlic}.flatten, m.unit)
       }
-      cache = cache + (m -> result)
+      if (result.isDefined) {
+        cache = cache + (m -> result.get)
+      }
       result
     }
   }
