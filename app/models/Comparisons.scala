@@ -43,21 +43,21 @@ object Comparisons {
     val wonderlics = population.map(_.wonderlic).flatten
 
     val means = MeasurementSet(0,
-      divideOrNone(heights.reduceLeft(_+_), heights.size),
-      divideOrNone(weights.reduceLeft(_+_), weights.size),
-      divideOrNone(wingspans.reduceLeft(_+_), wingspans.size),
-      divideOrNone(armLengths.reduceLeft(_+_), armLengths.size),
-      divideOrNone(handSizes.reduceLeft(_+_), handSizes.size),
-      divideOrNone(time10s.reduceLeft(_+_), time10s.size),
-      divideOrNone(time20s.reduceLeft(_+_), time20s.size),
-      divideOrNone(time40s.reduceLeft(_+_), time40s.size),
-      divideOrNone(benchPresss.reduceLeft(_+_), benchPresss.size),
-      divideOrNone(verticalJumps.reduceLeft(_+_), verticalJumps.size),
-      divideOrNone(broadJumps.reduceLeft(_+_), broadJumps.size),
-      divideOrNone(cone3s.reduceLeft(_+_), cone3s.size),
-      divideOrNone(shuttle20s.reduceLeft(_+_), shuttle20s.size),
-      divideOrNone(shuttle60s.reduceLeft(_+_), shuttle60s.size),
-      divideOrNone(wonderlics.reduceLeft(_+_), wonderlics.size)
+      divideOrNone(heights.sum, heights.size),
+      divideOrNone(weights.sum, weights.size),
+      divideOrNone(wingspans.sum, wingspans.size),
+      divideOrNone(armLengths.sum, armLengths.size),
+      divideOrNone(handSizes.sum, handSizes.size),
+      divideOrNone(time10s.sum, time10s.size),
+      divideOrNone(time20s.sum, time20s.size),
+      divideOrNone(time40s.sum, time40s.size),
+      divideOrNone(benchPresss.sum, benchPresss.size),
+      divideOrNone(verticalJumps.sum, verticalJumps.size),
+      divideOrNone(broadJumps.sum, broadJumps.size),
+      divideOrNone(cone3s.sum, cone3s.size),
+      divideOrNone(shuttle20s.sum, shuttle20s.size),
+      divideOrNone(shuttle60s.sum, shuttle60s.size),
+      divideOrNone(wonderlics.sum, wonderlics.size)
     )
 
     val stddevs = MeasurementSet(0,
