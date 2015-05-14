@@ -12,7 +12,7 @@ case class Measurement(
     if ((measurable == Measurables.height || measurable == Measurables.wingspan) && measurement > 12 ) {
       math.floor(measurement / 12) + "' " + (measurement % 12) + getFractionEntity(measurement) + "\""
     } else if (measurable.unit == Inches) {
-      measurement + getFractionEntity(measurement) + "\""
+      math.floor(measurement) + getFractionEntity(measurement) + "\""
     } else if (measurable.unit == Seconds) {
       BigDecimal(measurement).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
     } else {
