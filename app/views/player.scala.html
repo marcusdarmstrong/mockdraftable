@@ -94,7 +94,7 @@
                   @for(m <- player.measurements) {
                     <tr>
                       <td>@m.measurable.name</td>
-                      <td>@m.measurement</td>
+                      <td>@m.display</td>
                       <td>@player.percentiles.getPercentile(m.measurable)</td>
                     </tr>
                   }
