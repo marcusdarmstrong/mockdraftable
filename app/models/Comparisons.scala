@@ -1,7 +1,9 @@
 package models
 
 object Comparisons {
-  def getComparisons(from: MeasurementSet, population: List[MeasurementSet]) = {
+  def getComparisons(from: MeasurementSet, originalPop: List[MeasurementSet]) = {
+    val population = originalPop.filter(_.playerId != from.playerId)
+
     def divideOrNone(first: Double, second: Double) = {
       if (second == 0) {
         None
