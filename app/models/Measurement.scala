@@ -27,15 +27,15 @@ case class Measurement(
     } else if (frac == 0.25) {
       "&#188;"
     } else if (frac == 0.375) {
-      "&#188;"
+      "&#8540;"
     } else if (frac == 0.5) {
-      "&#188;"
+      "&#189;"
     } else if (frac == 0.625) {
-      "&#188;"
+      "&#8541;"
     } else if (frac == 0.75) {
-      "&#188;"
+      "&#190;"
     } else if (frac == 0.875) {
-      "&#188;"
+      "&#8542;"
     } else if (frac != 0) {
       BigDecimal(frac).setScale(2, BigDecimal.RoundingMode.HALF_UP)
         .toDouble.toString.drop(1).take(3);

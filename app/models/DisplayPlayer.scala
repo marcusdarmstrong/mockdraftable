@@ -6,3 +6,6 @@ case class DisplayPlayer(
   val measurements: List[Measurement],
   val percentiles: Percentiles
 )
+{
+  val spider = SpiderGraph(percentiles)
+}
