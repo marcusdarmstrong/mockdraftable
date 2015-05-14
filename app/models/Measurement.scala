@@ -10,13 +10,13 @@ case class Measurement(
 ) {
   def display: String = {
     if ((measurable == Measurables.height || measurable == Measurables.wingspan) && measurement > 12 ) {
-      math.floor(measurement / 12) + "' " + (measurement % 12) + getFractionEntity(measurement) + "\""
+      math.floor(measurement / 12).toLong + "' " + (measurement % 12).toLong + getFractionEntity(measurement) + "\""
     } else if (measurable.unit == Inches) {
-      math.floor(measurement) + getFractionEntity(measurement) + "\""
+      math.floor(measurement).toLong + getFractionEntity(measurement) + "\""
     } else if (measurable.unit == Seconds) {
       BigDecimal(measurement).setScale(2, BigDecimal.RoundingMode.HALF_UP).toString
     } else {
-      measurement.toString
+      measurement.toLong.toString
     }
   }
 
