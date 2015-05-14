@@ -88,6 +88,8 @@ object Comparisons {
       def z(p: Option[Double], m: Option[Double], s: Option[Double]) = {
         if (p.isDefined && m.isDefined && s.isDefined && s.get != 0) {
           Some((p.get - m.get) / s.get)
+        } else if (m.isDefined) {
+          Some(0.0)
         } else {
           None
         }
