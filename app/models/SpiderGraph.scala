@@ -8,10 +8,10 @@ case class SpiderGraph(percentiles: Percentiles)
 
   val mapping = Measurables.all.map(m => {
     percentiles.getPercentile(m) match {
-      case Some(p) => MeasWithPerc(m, p)
+      case Some(p) => Some(MeasWithPerc(m, p))
       case None => None
     }
-  })
+  }).flatten
 
   val n = mapping.size;
   val scale = 200;
