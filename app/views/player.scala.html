@@ -63,6 +63,7 @@
                 <div class="progress">
                   <div class="progress-bar progress-bar-info" role="progressbar" style="width: @c.score%;">@c.score%</div>
                 </div>
+                @sparkline(c.sparkline)
                 <h4 class="list-group-item-heading">@c.player.firstName @c.player.lastName</h4>
                 <p class="list-group-item-text"><span class="label label-danger">@c.primaryPosition.abbr</span></p>
               </a>
