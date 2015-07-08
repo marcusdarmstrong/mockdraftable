@@ -8,7 +8,7 @@ case class Sparkline(val percentiles: Percentiles) {
 
   def polygon = {
     "0," + ymax + " " + percList.zipWithIndex.map(_ match {
-      case(p, index) => (xmax / percList.length * index) + "," + (ymax * p / 100)
+      case(p, index) => (xmax / percList.length * index) + "," + (ymax - ymax * p / 100)
     }).mkString(" ") + " " + xmax + "," + ymax
   }
 }

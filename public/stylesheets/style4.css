@@ -111,3 +111,6 @@ polygon {
   opacity: 0.5;
   stroke-width: 0;
 }
+.sparkline {
+  float: right;
+}
