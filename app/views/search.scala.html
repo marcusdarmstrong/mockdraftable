@@ -71,7 +71,7 @@
           <br>
           <div class="list-group comparisons">
             @for(r <- results) {
-              <a href="#" class="list-group-item">
+              <a href="/@r.player.canonicalName" class="list-group-item">
                 <h4 class="pull-right">@r.measurement.map(_.display).getOrElse("N/A")</h4>
                 @sparkline(r.sparkline)
                 <h4 class="list-group-item-heading">@r.player.firstName @r.player.lastName</h4>
