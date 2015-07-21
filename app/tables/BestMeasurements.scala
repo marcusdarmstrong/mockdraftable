@@ -33,13 +33,7 @@ object BestMeasurements {
   val positionEligibility = TableQuery[Eligibility]
 
   def forPosition(positionId: Int): List[MeasurementSet] = db.withSession { implicit session =>
-    val positionSet = Positions.getImpliedPositions(positionId).map(_.id)
-    (for (
-      (m, pe) <- bestMeasurements innerJoin positionEligibility.filter(_.positionId.inSetBind(positionSet)) on (_.playerId === _.playerId)
-    ) yield m).list
-
-
-    val positionIdSet = Positions.getImpliedPositions(positionId).map(_.id)
+    val positionIdSet = Positions.getChildPositions(positionId).map(_.id)
     val playersAtPosition = positionEligibility
       .filter(_.positionId inSet positionIdSet)
       .groupBy(_.playerId)
