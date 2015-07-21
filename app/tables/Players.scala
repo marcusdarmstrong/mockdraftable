@@ -54,11 +54,11 @@ object Players {
       query = query.filter(p => (p.firstName like searchTerm) || (p.lastName like searchTerm))
     }
 
-    val pageSize = 10;
+    //val pageSize = 10;
     query
       .sortBy(p => (p.lastName, p.firstName, p.id))
-      .drop(pageSize*(opts.page - 1))
-      .take(pageSize)
+      //.drop(pageSize*(opts.page - 1))
+      //.take(pageSize)
       .list    
   }
 }

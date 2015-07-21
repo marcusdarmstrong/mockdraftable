@@ -7,10 +7,10 @@ import tables._
 
 object Application extends Controller {
 
-  def search(year: Int, pos: String, name: Option[String], sortd: Option[String], sorta: Option[String], page: Int) = Action {
-  	val searchOptions = SearchOptions(year, pos, name, page);
+  def search(year: Int, pos: String, name: Option[String], attr: Option[String], sort: Option[String]) = Action {
+  	val searchOptions = SearchOptions(year, pos, name, attr, sort);
   	val playerList = List();
-    Ok(views.html.search(searchOptions, playerList))
+    Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable)))
   }
 
   def player(id: String, pos: Option[String]) = Action {

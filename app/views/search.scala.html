@@ -1,7 +1,6 @@
-@(opts: SearchOptions, results: List[Player])
+@(opts: SearchOptions, results: List[SearchResultPlayer], measurables: List[Measurable])
 
 @main("MockDraftable") {
-
         <br>
           <div class="clearfix">
             <form>
@@ -57,33 +56,25 @@
             </div>
             <div class="btn-group btn-group-sm pull-right">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                40 Yard Dash <span class="caret"></span>
+                opts.displayMeasurable.name <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Height</a></li>
-                <li><a href="#">Weight</a></li>
-                <li><a href="#">10 Yard Dash</a></li>
-                <li><a href="#">Bench Press</a></li>
+                @for(m <- measurables) {
+                  <li><a href="#">m.name</a></li>
+                }
               </ul>
             </div>
           </div>
           <br>
           <div class="list-group comparisons">
-            <a href="#" class="list-group-item">
-              <h4 class="pull-right">5.08 sec</h4>
-              <h4 class="list-group-item-heading">D'Brickashaw Ferguson</h4>
-              <p class="list-group-item-text"><span class="label label-danger">OT</span> Virginia</p>
-            </a>
-            <a href="#" class="list-group-item">
-              <h4 class="pull-right">5.06 sec</h4>
-              <h4 class="list-group-item-heading">Jammal Brown</h4>
-              <p class="list-group-item-text"><span class="label label-danger">OT</span> Oklahoma</p>
-            </a>
-            <a href="#" class="list-group-item">
-              <h4 class="pull-right">5.21 sec</h4>
-              <h4 class="list-group-item-heading">Gabe Carimi</h4>
-              <p class="list-group-item-text"><span class="label label-danger">OT</span> Wisconsin</p>
-            </a>
+            @for(r <- results) {
+              <a href="#" class="list-group-item">
+                <h4 class="pull-right">@r.measurement.display</h4>
+                @sparkline(r.sparkline)
+                <h4 class="list-group-item-heading">@r.player.firstName @r.player.lastName</h4>
+                <p class="list-group-item-text"><span class="label label-danger">@r.primaryPosition.abbr</span></p>
+              </a>
+            }
           </div>
         </div>
       </div>
