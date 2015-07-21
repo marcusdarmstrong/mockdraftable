@@ -9,7 +9,15 @@ object Application extends Controller {
 
   def search(year: Int, pos: String, name: Option[String], attr: Option[String], sort: Option[String]) = Action {
   	val searchOptions = SearchOptions(year, pos, name, attr, sort);
-  	val playerList = List();
+    val population = BestMeasurements.forPosition(Positions.getPositionForAbbr(pos).id)
+  	val playerList = Players.forSearchOptions(searchOptions).map(p => {
+      val eligiblePositions = Eligibility.forPlayerId(p.id)
+      val measurements = BestMeasurements.forPlayer(p.id)
+      val primaryPosition = Positions.getDisplayPosition(eligiblePositions)
+      val percentiles = Percentiles(measurements, population)
+
+      SearchResultPlayer(p, primaryPosition, percentiles, measurements.forMeasurable(searchOptions.displayMeasurable))
+    });
     Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable)))
   }
 
