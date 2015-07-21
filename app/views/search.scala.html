@@ -1,4 +1,4 @@
-@(opts: SearchOptions, results: List[SearchResultPlayer], measurables: List[Measurable])
+@(opts: SearchOptions, results: List[SearchResultPlayer], measurables: List[Measurable], years: List[Int])
 
 @main("MockDraftable") {
         <br>
@@ -25,9 +25,12 @@
                 <div class="form-group col-xs-6 col-sm-3">
                   <div class="btn-group btn-block btn-group-lg">
                     <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">
-                      2015&nbsp;<span class="caret"></span>
+                      @opts.year&nbsp;<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                      @for(year <- years) {
+                        <li><a href="#">@year</a></li>
+                      }
                     </ul>
                   </div>
                 </div>

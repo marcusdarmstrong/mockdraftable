@@ -18,7 +18,9 @@ object Application extends Controller {
 
       SearchResultPlayer(p, primaryPosition, percentiles, measurements.forMeasurable(searchOptions.displayMeasurable))
     });
-    Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable)))
+
+    val years = (1999 to 2015).toList
+    Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable), years diff List(searchOptions.year)))
   }
 
   def player(id: String, pos: Option[String]) = Action {
