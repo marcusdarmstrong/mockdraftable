@@ -39,7 +39,7 @@ object Players {
   }
 
   def forSearchOptions(opts: SearchOptions) = db.withSession { implicit session =>
-    val positionIdSet = Positions.getImpliedPositions(Positions.getPositionForAbbr(opts.pos).id).map(_.id)
+    val positionIdSet = Positions.getChildPositions(Positions.getPositionForAbbr(opts.pos).id).map(_.id)
     val playersAtPosition = positionEligibility
       .filter(_.positionId inSet positionIdSet)
       .groupBy(_.playerId)

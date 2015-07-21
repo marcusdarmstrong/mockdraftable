@@ -211,6 +211,10 @@ object Positions {
     val pos = getPosition(positionId)
     tree.get(pos) getOrElse Set(pos)
   }
+  def getChildPositions(positionId: Int) = {
+    val pos = getPosition(positionId)
+    children.get(pos) getOrElse Set(pos)
+  }
 	def getPosition(positionId: Int) = ids.get(positionId) getOrElse ATH
   def getPositionForAbbr(positionAbbr: String) = abbrs.get(positionAbbr) getOrElse ATH
   def getDisplayPosition(positions: Set[Position]) = {
