@@ -8,8 +8,8 @@ import tables._
 object Application extends Controller {
 
   def search(year: Int, pos: String, name: Option[String], attr: Option[String], sort: Option[String]) = Action {
-  	val searchOptions = SearchOptions(year, pos, name, attr, sort);
     val searchPosition = Positions.getPositionForAbbr(pos)
+    val searchOptions = SearchOptions(year, searchPosition, name, attr, sort);
     val population = BestMeasurements.forPosition(searchPosition.id)
   	val playerList = Players.forSearchOptions(searchOptions).map(p => {
       val eligiblePositions = Eligibility.forPlayerId(p.id)
@@ -22,6 +22,7 @@ object Application extends Controller {
 
     val years = (1999 to 2015).toList diff List(searchOptions.year)
     val positions = Positions.getAllPositions.filter((pos: Position) => pos.positionType != Role).toList diff List(searchPosition)
+
     Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable), years, positions))
   }
 

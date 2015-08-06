@@ -78,44 +78,44 @@ object Positions {
     val KR = Position(810, "KR", "Kick Returner", Role)
 
 	val children = Map(
-		ATH -> Set(ATH, SKILL, QB, BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, 
+		ATH -> List(ATH, SKILL, QB, BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, 
       WR, SR, X, Z, OL, OT, LT, RT, IOL, OG, LG, RG, OC, DL, IDL, DT, `3T`, NT, 
       `0T`, `1T`, `5T`, DE, RDE, LDE, EDGE, LB, OBLB, ILB, COVER, HIT, MIKE, OLB, 
       SLB, WLB, HSL, `34B`, SLB34, WLB34, DB, S, FS, SS, CB, C2CB, PCB, SCB, ST, K, 
       KOS, P, LS, GUN, PP, VICE, H, U, PR, KR),
 
-    SKILL -> Set(SKILL, QB, BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, 
+    SKILL -> List(SKILL, QB, BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, 
       WR, SR, X, Z),
-    BALL -> Set(BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, WR, SR, X, Z),
-    RB -> Set(RB, `3DB`, HB, FB),
-    TE -> Set(TE, JKR, HTE, FTE, YTE),
-    WR -> Set(WR, SR, X, Z),
+    BALL -> List(BALL, OW, RB, `3DB`, HB, FB, TE, JKR, HTE, FTE, YTE, WR, SR, X, Z),
+    RB -> List(RB, `3DB`, HB, FB),
+    TE -> List(TE, JKR, HTE, FTE, YTE),
+    WR -> List(WR, SR, X, Z),
 
-    OL -> Set(OL, OT, LT, RT, IOL, OG, LG, RG, OC),
-    OT -> Set(OT, LT, RT),
-    IOL -> Set(IOL, OG, LG, RG, OC),
-    OG -> Set(LG, RG),
+    OL -> List(OL, OT, LT, RT, IOL, OG, LG, RG, OC),
+    OT -> List(OT, LT, RT),
+    IOL -> List(IOL, OG, LG, RG, OC),
+    OG -> List(LG, RG),
 
-    DL -> Set(DL, IDL, DT, `3T`, NT, `0T`, `1T`, `5T`, DE, RDE, LDE),
-    IDL -> Set(IDL, DT, `3T`, NT, `0T`, `1T`, `5T`),
-    DT -> Set(DT, `3T`, NT, `0T`, `1T`),
-    NT -> Set(NT, `0T`, `1T`),
-    DE -> Set(DE, RDE, LDE),
+    DL -> List(DL, IDL, DT, `3T`, NT, `0T`, `1T`, `5T`, DE, RDE, LDE),
+    IDL -> List(IDL, DT, `3T`, NT, `0T`, `1T`, `5T`),
+    DT -> List(DT, `3T`, NT, `0T`, `1T`),
+    NT -> List(NT, `0T`, `1T`),
+    DE -> List(DE, RDE, LDE),
 
-		EDGE -> Set(EDGE, `34B`, SLB34, WLB34, DE, RDE, LDE),
+		EDGE -> List(EDGE, `34B`, SLB34, WLB34, DE, RDE, LDE),
 
-    LB -> Set(LB, OBLB, ILB, COVER, HIT, MIKE, OLB, SLB, WLB, HSL, `34B`, SLB34, WLB34),
-    OBLB -> Set(OBLB, ILB, COVER, HIT, MIKE, OLB, SLB, WLB, HSL),
-    ILB -> Set(ILB, COVER, HIT, MIKE),
-    OLB -> Set(OLB, SLB, WLB),
-    `34B` -> Set(`34B`, SLB34, WLB34),
+    LB -> List(LB, OBLB, ILB, COVER, HIT, MIKE, OLB, SLB, WLB, HSL, `34B`, SLB34, WLB34),
+    OBLB -> List(OBLB, ILB, COVER, HIT, MIKE, OLB, SLB, WLB, HSL),
+    ILB -> List(ILB, COVER, HIT, MIKE),
+    OLB -> List(OLB, SLB, WLB),
+    `34B` -> List(`34B`, SLB34, WLB34),
 
-    DB -> Set(DB, S, FS, SS, CB, C2CB, PCB, SCB),
-    S -> Set(S, FS, SS),
-    CB -> Set(CB, C2CB, PCB, SCB),
+    DB -> List(DB, S, FS, SS, CB, C2CB, PCB, SCB),
+    S -> List(S, FS, SS),
+    CB -> List(CB, C2CB, PCB, SCB),
 
-    ST -> Set(ST, K, KOS, P, LS, GUN, PP, VICE, H, U, PR, KR),
-    K -> Set(K, KOS)
+    ST -> List(ST, K, KOS, P, LS, GUN, PP, VICE, H, U, PR, KR),
+    K -> List(K, KOS)
 	)
 
   val tree = Map(
@@ -204,17 +204,17 @@ object Positions {
     KR -> Set(KR, ST, ATH)
   )
 
-	val ids = children.get(ATH).getOrElse(Set()).map(p => p.id -> p).toMap
-  val abbrs = children.get(ATH).getOrElse(Set()).map(p => p.abbr -> p).toMap
+	val ids = children.get(ATH).getOrElse(List[Position]()).toSet.map((p: Position) => p.id -> p).toMap[Int,Position]
+  val abbrs = children.get(ATH).getOrElse(List[Position]()).toSet.map((p: Position) => p.abbr -> p).toMap[String,Position]
 
-  def getAllPositions = children.get(ATH).getOrElse(Set())
+  def getAllPositions = children.get(ATH).getOrElse(List[Position]())
 	def getImpliedPositions(positionId: Int) = {
     val pos = getPosition(positionId)
     tree.get(pos) getOrElse Set(pos)
   }
   def getChildPositions(positionId: Int) = {
     val pos = getPosition(positionId)
-    children.get(pos) getOrElse Set(pos)
+    (children.get(pos) getOrElse List(pos)).toSet
   }
 	def getPosition(positionId: Int) = ids.get(positionId) getOrElse ATH
   def getPositionForAbbr(positionAbbr: String) = abbrs.get(positionAbbr) getOrElse ATH

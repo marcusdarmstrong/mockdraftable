@@ -2,7 +2,7 @@ package models
 
 case class SearchOptions(
   year: Int, 
-  pos: String, 
+  pos: Position, 
   name: Option[String],
   attr: Option[String], 
   sort: Option[String]
