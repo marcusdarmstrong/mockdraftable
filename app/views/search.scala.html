@@ -1,4 +1,4 @@
-@(opts: SearchOptions, results: List[SearchResultPlayer], measurables: List[Measurable], years: List[Int])
+@(opts: SearchOptions, results: List[SearchResultPlayer], measurables: List[Measurable], years: List[Int], positions: List[Position])
 
 @main("MockDraftable") {
         <br>
@@ -14,11 +14,9 @@
                       <strong>OT</strong>&nbsp;<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">LT</a></li>
-                      <li><a href="#">OL</a></li>
-                      <li><a href="#">ATH</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">WR</a></li>
+                      @for(pos <- positions) {
+                        <li><a href="#">pos.abbr</a></li>
+                      }
                     </ul>
                   </div>
                 </div>

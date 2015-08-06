@@ -20,7 +20,8 @@ object Application extends Controller {
     });
 
     val years = (1999 to 2015).toList
-    Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable), years diff List(searchOptions.year)))
+    val positions = Positions.getAllPositions.filter((pos: Position) => pos.positionType != Role).toList
+    Ok(views.html.search(searchOptions, playerList, Measurables.all diff List(searchOptions.displayMeasurable), years diff List(searchOptions.year), positions))
   }
 
   def player(id: String, pos: Option[String]) = Action {

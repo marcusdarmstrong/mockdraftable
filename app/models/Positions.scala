@@ -207,6 +207,7 @@ object Positions {
 	val ids = children.get(ATH).getOrElse(Set()).map(p => p.id -> p).toMap
   val abbrs = children.get(ATH).getOrElse(Set()).map(p => p.abbr -> p).toMap
 
+  def getAllPositions = children.get(ATH).getOrElse(Set())
 	def getImpliedPositions(positionId: Int) = {
     val pos = getPosition(positionId)
     tree.get(pos) getOrElse Set(pos)
