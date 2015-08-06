@@ -222,7 +222,6 @@ object Positions {
     // Ignore all 8* positions, unless they are the only ones availble
     var idx = 0;
     var partial = ""
-    Logger.debug("Position set: " + positions)
     var success = true;
     do {
       var current = 'a';
@@ -235,7 +234,6 @@ object Positions {
             if (!id.startsWith("8")) {
               if (current == 'a') {
                 current = id.charAt(idx)
-                Logger.debug("Setting current to " + current)
               } else {
                 success &= id.charAt(idx) == current
               }
@@ -245,11 +243,9 @@ object Positions {
       }
       if (success) {
         partial += current
-        Logger.debug("Setting partial to " + partial)
       }
       idx += 1
     } while (success)
-    Logger.debug("Partial: " + partial)
     if (partial == "") {
       if (positions.subsetOf(Set(`34B`, SLB34, WLB34, DE, RDE, LDE))) {
         EDGE
@@ -262,14 +258,12 @@ object Positions {
       } else if (positions.subsetOf(Set(K, KOS, P, LS, GUN, PP, VICE, H, U, PR, KR))) {
         ST
       } else {
-        Logger.debug("Default ATH returned")
         ATH
       }
     } else {
       var pos = getPosition(partial.toInt)
       while (pos.positionType == Role) {
         pos = getPosition(pos.id / 10)
-        Logger.debug("Reducing to: " + pos)
       }
       pos
     }
