@@ -8,19 +8,19 @@
                 <div class="form-group col-xs-12 col-sm-6">
                   <input type="search" class="form-control input-lg" id="playerName" placeholder="Player Name">
                 </div>
-                <div class="form-group col-xs-6 col-sm-3">
+                <div class="form-group col-xs-8 col-sm-4">
                   <div class="btn-group btn-block btn-group-lg">
                     <button type="button" class="btn btn-danger btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                       <strong>@opts.pos</strong>&nbsp;<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       @for(pos <- positions) {
-                        <li><a href="#">@pos.abbr</a></li>
+                        <li><a href="#" data-position="@pos.abbr">@pos.name</a></li>
                       }
                     </ul>
                   </div>
                 </div>
-                <div class="form-group col-xs-6 col-sm-3">
+                <div class="form-group col-xs-4 col-sm-2">
                   <div class="btn-group btn-block btn-group-lg">
                     <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">
                       @opts.year&nbsp;<span class="caret"></span>
