@@ -113,4 +113,5 @@ polygon {
 }
 .sparkline {
   float: right;
+  height: 42px;
 }
