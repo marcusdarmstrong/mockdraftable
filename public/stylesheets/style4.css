@@ -115,3 +115,6 @@ polygon {
   float: right;
   height: 42px;
 }
+.sparkline svg {
+  height: 100%;
+}
