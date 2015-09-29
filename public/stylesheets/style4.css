@@ -114,7 +114,7 @@ polygon {
 .sparkline {
   float: right;
   margin-top: 2px;
-  width: 20%;
+  height: 42px;
   margin-bottom: -4px;
 }
 .sparkline svg {
